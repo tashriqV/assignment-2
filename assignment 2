@@ -1,0 +1,46 @@
+
+#2(chapter1)
+from PIL import Image
+import time
+
+input_image = Image.open('/content/chapter1.jpg')
+
+current_time = int(time.time())
+generated_number = (current_time % 100) + 50
+if generated_number % 2 == 0:
+    generated_number += 10
+
+width, height = input_image.size
+for x in range(width):
+    for y in range(height):
+        r, g, b = input_image.getpixel((x, y))
+        new_r = min(r + generated_number, 255)
+        new_g = min(g + generated_number, 255)
+        new_b = min(b + generated_number, 255)
+        input_image.putpixel((x, y), (new_r, new_g, new_b))
+
+output_file = 'chapter1out.png'
+input_image.save(output_file)
+
+print(output_file)
+
+
+#2(chapter2)
+s=""
+n=""
+a=input("give me a string ")
+for i in a:
+    if 97 <= ord(i) <= 122 or 65<=ord(i)<=90:
+        s+=i
+    else:
+        n+=i
+print("Letter string =",s,"  Number string =",n)
+for i in n:
+    if int(i)%2==0:
+        print("Even numbers",i,"=",ord(i),"(ASCII values)")
+for i in s:
+    if 65<=ord(i)<=90:
+        print("Upper class letters",i,"=",ord(i),"(ASCII values)")
+
+
+
